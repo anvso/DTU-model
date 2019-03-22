@@ -218,7 +218,7 @@ for(iter in 1:MaxIterations){
   BetaPIMin    <-0.12471  
   BetaPIMax    <-1.73103 
 
-#Transmission paramters with use of risk antimicrobials
+#Transmission paramters without use of risk antimicrobials
 # BetaWDW      <-0.0711 #%AB, Based on Broens et al., 2012a: Value for post-weaning, ab:% and pIP=1 and Broens, 2011 (Duration of infection=17.4 days)
 # BetaWDWMin   <-0.0345 #%AB   
 # BetaWDWMax   <-0.1425 #%AB
@@ -248,33 +248,33 @@ for(iter in 1:MaxIterations){
 # BetaPIMax    <-0.50690 
 
 #Intermediate transmission parameters
-# BetaWDW      <-0.124713 #%AB, Based on Broens et al., 2012a: Value for post-weaning, ab:% and pIP=1 and Broens, 2011 (Duration of infection=17.4 days)
-# BetaWDWMin   <-0.050287 #%AB   
-# BetaWDWMax   <-0.314368 #%AB
-# BetaWDF      <-0.124713 #%AB #Currently the same as for weaners
-# BetaWDFMin   <-0.050287 #%AB
-# BetaWDFMax   <-0.314368 #%AB
-# BetaWDO      <-0.124713 #%AB #Within pen for others (gilts and pregnant sows sharing pen in the gestation stable). Currently the same as for finishers
-# BetaWDOMin   <-0.050287 #%AB
-# BetaWDOMax   <-0.314368 #%AB
-# BetaBPDW     <-0.024138 #%AB #The value from Broens for post-weaning, ab:+ and pIP=0
-# BetaBPDWMin  <-0.014943 #%AB
-# BetaBPDWMax  <-0.039368 #%AB
-# BetaBPDF     <-0.024138 #%AB #Same as for weaners
-# BetaBPDFMin  <-0.014943 #%AB
-# BetaBPDFMax  <-0.039368 #%AB
-# BetaBPDO     <-0.024138 #%AB #This value needs to be somewhere between BPDF and BPDW (current the same value).  
-# BetaBPDOMin  <-0.014943 #%AB
-# BetaBPDOMax  <-0.039368 #%AB
-# BetaBPDX     <-0.062356 #%AB #Pre-weaning values
-# BetaBPDXMin  <-0.028448 #%AB
-# BetaBPDXMax  <-0.139943 #%AB
-# BetaSOD      <-0.322989 #Currently the same as between piglets
-# BetaSOMin    <-0.095115 #Currently the same as between piglets
-# BetaSOMax    <-1.118966 #Currently the same as between piglets
-# BetaPID      <-0.322989 #Broens value for pre-weaning pigs
-# BetaPIMin    <-0.095115
-# BetaPIMax    <-1.118966
+# BetaWDW      <-0.124713 #Avg. of +ab and %ab
+# BetaWDWMin   <-0.050287 #Avg. of +ab and %ab   
+# BetaWDWMax   <-0.314368 #Avg. of +ab and %ab
+# BetaWDF      <-0.124713 #Avg. of +ab and %ab
+# BetaWDFMin   <-0.050287 #Avg. of +ab and %ab
+# BetaWDFMax   <-0.314368 #Avg. of +ab and %ab
+# BetaWDO      <-0.124713 #Avg. of +ab and %ab
+# BetaWDOMin   <-0.050287 #Avg. of +ab and %ab
+# BetaWDOMax   <-0.314368 #Avg. of +ab and %ab
+# BetaBPDW     <-0.024138 #Avg. of +ab and %ab
+# BetaBPDWMin  <-0.014943 #Avg. of +ab and %ab
+# BetaBPDWMax  <-0.039368 #Avg. of +ab and %ab
+# BetaBPDF     <-0.024138 #Avg. of +ab and %ab
+# BetaBPDFMin  <-0.014943 #Avg. of +ab and %ab
+# BetaBPDFMax  <-0.039368 #Avg. of +ab and %ab
+# BetaBPDO     <-0.024138 #Avg. of +ab and %ab  
+# BetaBPDOMin  <-0.014943 #Avg. of +ab and %ab
+# BetaBPDOMax  <-0.039368 #Avg. of +ab and %ab
+# BetaBPDX     <-0.062356 #Avg. of +ab and %ab
+# BetaBPDXMin  <-0.028448 #Avg. of +ab and %ab
+# BetaBPDXMax  <-0.139943 #Avg. of +ab and %ab
+# BetaSOD      <-0.322989 #Avg. of +ab and %ab #Currently the same as between piglets
+# BetaSOMin    <-0.095115 #Avg. of +ab and %ab #Currently the same as between piglets
+# BetaSOMax    <-1.118966 #Avg. of +ab and %ab #Currently the same as between piglets
+# BetaPID      <-0.322989 #Avg. of +ab and %ab
+# BetaPIMin    <-0.095115 #Avg. of +ab and %ab 
+# BetaPIMax    <-1.118966 #Avg. of +ab and %ab
 
 #Probabilities for tranmission during day 1 in the life of a piglet
   ProbPND      <-0.76 #Perinatal + all other transmission at day zero. Probability of the offspring being pos given that the dam is pos, not transmission rate. Based on Verhegghe et al., 2013. (Broens: 0.81 or 0.78)
@@ -512,7 +512,6 @@ if (length(Sow_mat)>0) {
    notreins <- tmp5[-which(tmp5%in%tmp6[tmp6$oml==1,1])]
  }
 
-
 ### Movement between stables
 TBes$stable <- ifelse(TBes$teama==22&TBes$Type==1, 3, 
                   ifelse(TBes$ri==-1, 1, 
@@ -570,7 +569,6 @@ if (gTime%in%ugt&length(TBes$Animal[TBes$PACount >= TBes$Slaughterage & TBes$Typ
     Sla2 <- agegrad$Animal[1:notoberem]
     TBes <- TBes[-which(TBes$Animal%in%Sla2),] 
   }
-  
   
   if (length(movtobuff)>0) {
     TBes$sec[TBes$Animal%in%movtobuff] <- -1 #The buffer section if referred to as sec= -1
@@ -647,7 +645,7 @@ if (gTime==1) { #Assignment of places in the farrowing unit from the beginning
 }
 
 #Update of places when new are filled/emptied
-if (any(TBes$PACount%in%movedays & TBes$Type==1 | TBes$PACount==0)) { #Husk at team 22 skal kunne opdateres på andre dage end movedays
+if (any(TBes$PACount%in%movedays & TBes$Type==1 | TBes$PACount==0)) { #Husk at team 22 skal kunne opdateres pÃ¥ andre dage end movedays
   TBes$sec[TBes$PACount%in%movedays & TBes$Type==1&TBes$stable==3&TBes$ns %in% c(0,9999)] <- 0 #Nulstilling af sektion og dyr for myligt indflyttede dyr
   TBes$sti[TBes$PACount%in%movedays & TBes$Type==1&TBes$stable==3&TBes$ns %in% c(0,9999)] <- 0
   #FSec <- 1:5 #Sections available for sows that are not nursery sows
@@ -670,7 +668,7 @@ if (any(TBes$PACount%in%movedays & TBes$Type==1 | TBes$PACount==0)) { #Husk at t
 if (any(TBes$PACount%in%Farrowdays&TBes$stable==3)) {
    TestPen <- merge(TBes[TBes$stable==3&TBes$PACount==0,c(1:24)],TBes[TBes$stable==3&TBes$PACount%in%(Farrowdays),c(15,25:39)], by=c("nsow"), all.x="TRUE") [, union(names(TBes[TBes$stable==3&TBes$PACount==0,c(1:24)]), names(TBes[TBes$PACount%in%Farrowdays,c(16,25:39)]))] 
    TBes <- rbind(TBes[-which(TBes$Animal%in%TestPen$Animal),], TestPen)
-   newborns <- TBes$Animal[TBes$PACount==0&TBes$stable==3&TBes$Type==2] #Riskikerer at flytte daggamle grise, der er flyttet til en ammeso tilbage, hvis ikke der indekseres på dette
+   newborns <- TBes$Animal[TBes$PACount==0&TBes$stable==3&TBes$Type==2] #Riskikerer at flytte daggamle grise, der er flyttet til en ammeso tilbage, hvis ikke der indekseres pÃ¥ dette
    #TBes$sec[match(newborns, TBes$Animal)] <- TBes$sec[match(TBes$nsow[TBes$Animal %in% newborns],TBes$Animal[TBes$ns==0])]
    TBes$sec[match(newborns, TBes$Animal)] <- TBes$sec[match(TBes$nsow[TBes$Animal %in% newborns],TBes$Animal)]
    TBes$sti[match(newborns, TBes$Animal)] <- TBes$sti[match(TBes$nsow[TBes$Animal %in% newborns],TBes$Animal)]
@@ -810,8 +808,6 @@ if (any(TBes$PACount%in%(Matdays-3)&TBes$stable==1&TBes$Type==1&TBes$ns==1000)){
   TBes$ns[TBes$Animal %in% TBes$Animal[TBes$PACount%in%(Matdays-3)&TBes$stable==1&TBes$Type==1&TBes$ns==1000]] <- 0
 }
 
-
-
 #### Alternative strategy for sows to be re-inseminated: identification 3 weeks after insemination and immediate re-semination and movement to the section of the other newly inseminated sows
 #As the sows remains with their old team for the first three weeks, only one movement needs to be coded
 omlmat <-TBes$Animal[TBes$ri==-1] #Only tagged for one day now, so can be used as sole condition
@@ -940,9 +936,9 @@ if (any(TBes$sti==23&TBes$stable==5) | any(TBes$sti==15&TBes$Type==3)) {
 #####################################
 ### Deaths/culling of sows
 ### Probability vectors
-Sow_raw_mat_far<-c(0,0.020, 0.016, 0.017, 0.027, 0.018, 0.023, 0.020, 0.034,0.034) # Sow fatality rate between mating and farrowing, based on no. og litters, source: "VSP/SEGES (2013): Udsætningstrategi"
-Sow_raw_post_far<-c(0,0.028, 0.026, 0.031, 0.034, 0.031, 0.025, 0.042, 0.028,0.028) #As above, after farrowing (source: "VSP/SEGES (2013): Udsætningstrategi")
-Sow_raw_cull_post_far<-c(0,0.04, 0.06, 0.08, 0.11, 0.18, 0.34, 0.45, 1.00,1) #Prop of sows culled after the a given litter is weaned #source: "VSP/SEGES (2013): Udsætningstrategi".(Prop. of sows alive after haven given birth to the relevant no. of litters)
+Sow_raw_mat_far<-c(0,0.020, 0.016, 0.017, 0.027, 0.018, 0.023, 0.020, 0.034,0.034) # Sow fatality rate between mating and farrowing, based on no. og litters, source: "VSP/SEGES (2013): UdsÃ¦tningstrategi"
+Sow_raw_post_far<-c(0,0.028, 0.026, 0.031, 0.034, 0.031, 0.025, 0.042, 0.028,0.028) #As above, after farrowing (source: "VSP/SEGES (2013): UdsÃ¦tningstrategi")
+Sow_raw_cull_post_far<-c(0,0.04, 0.06, 0.08, 0.11, 0.18, 0.34, 0.45, 1.00,1) #Prop of sows culled after the a given litter is weaned #source: "VSP/SEGES (2013): UdsÃ¦tningstrategi".(Prop. of sows alive after haven given birth to the relevant no. of litters)
 
 ## Day_leav_fst<-c(386, 533, 680, 827, 974, 1121, 1268, 1415) #Day of leaving the farrowing stable after having the given litter no.
 Sow_mat_far_daily <-Sow_raw_mat_far/114 #Daily probability of removal between mating and farrowing
@@ -970,7 +966,7 @@ lit_dam3 <- matrix(numeric(0),ncol=3)
 
 #"Strategic culling: selection and removal of sows immediately after weaning 
 Postwean_newprob <- Sow_raw_cull_post_far - c(0, 0.12*(1-probreins), 1) #probreins is the probability of re-insemination
-#Farrowdays + 29 = Matdays - 4 =Flyttedag fra farestalden til løbestalden
+#Farrowdays + 29 = Matdays - 4 =Flyttedag fra farestalden til lÃ¸bestalden
 if (any(TBes$PACount %in% (Farrowdays + 29)&TBes$Type==1)) {
 Movedsows  <- TBes$Animal[TBes$PACount %in% (Farrowdays + 29)&TBes$Type==1]
 lit_dam    <- cbind(Movedsows,TBes$LCount[match(Movedsows,TBes$Animal)])
@@ -1050,7 +1046,7 @@ if (any(AniRem$Freq<3)) {
   sowstobemoved <- TBes$Animal[TBes$Type==1&TBes$Sti%in%AniRem$Var1[AniRem$Freq<3]]
   #tmpvar <- rep(mmovedays, each=5) + c(0:4) #Only days prior to insemination and the insemination day have been included
   secmin <- min(unique(TBes$sec[TBes$stable==1]))
-  distm  <- min(TBes$PACount[TBes$stable==1&TBes$Type==1&TBes$sec==secmin])-mmovedays #Når alderen på dyrene i en sektion kendes, kan alderen på dem i de øvrige sektioner forudsiges
+  distm  <- min(TBes$PACount[TBes$stable==1&TBes$Type==1&TBes$sec==secmin])-mmovedays #NÃ¥r alderen pÃ¥ dyrene i en sektion kendes, kan alderen pÃ¥ dem i de Ã¸vrige sektioner forudsiges
   remainder <- unique(distm%%7) #Days the youngest animals are older than mmovedays
   adj <- ifelse(remainder>5,(7-remainder)+7 ,remainder) 
   adj2 <- as.matrix(sapply(sowstobemoved,function(x)mmovedays-TBes$PACount[TBes$Animal%in%x]),drop=F)
@@ -1152,7 +1148,7 @@ TBes$nsr      <- ifelse(PrevelanceSec>PrevCuttOff,ProbPershigh,ProbPersLow) #Pro
 ProbInfWP  <- ifelse(TBes$NumWPAll==0,0,1-exp(-TBes$BetaWPT*TBes$NumWPInf/TBes$NumWPAll))
 ProbInfBP  <- ifelse(TBes$sec==-1&TBes$NumWPAll==TBes$NumBPAll | TBes$NumBPAll==TBes$NumWPAll,0, 1-exp(-TBes$BetaBPT*(TBes$NumBPInf-TBes$NumWPInf)/(TBes$NumBPAll-TBes$NumWPAll)))
 ProbInfBS  <- ifelse(TBes$stable==2 |(TBes$NumBSAll-TBes$NumBPAll)==0 ,0,1-exp(-TBes$BetaBST*(TBes$NumBSInf-TBes$NumBPInf)/(TBes$NumBSAll-TBes$NumBPAll)))
-ProbInfBSt <- ifelse(TBes$NumBSAll-TBes$NumBPAll==0,0,1-exp(-TBes$BetaBStT*(sum(TBes$Infected)-TBes$NumBSInf)/(length(TBes$Animal)-TBes$NumBSAll)))
+ProbInfBSt <- 1-exp(-TBes$BetaBStT*(sum(TBes$Infected)-TBes$NumBSInf)/(length(TBes$Animal)-TBes$NumBSAll))
 TotProbInf <- 1-((1-ProbInfWP)*(1-ProbInfBP)*(1-ProbInfBS)*(1-ProbInfBSt))
 
 
@@ -1179,6 +1175,7 @@ if(length(NewInfected)) {
 
 #Decolonization 
 TBes$Infected[TBes$ShedStatus%in%c(2,4) & gTime==TBes$dcd] <- FALSE 
+TBes$ShedStatus[TBes$ShedStatus%in%c(2,4) & gTime==TBes$dcd] <- 0 
 
 }#END of if(gTime>=DiseaseStart)){
 
